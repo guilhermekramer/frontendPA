@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.carouselContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 1h;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffcc00;
+    padding: 10px 20px;
+    color: #004d99;
+}
+
+.profile-icon {
+    font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+
+.categorias, .gastos {
+    margin-bottom: 20px;
+}
+
+.categorias h2, .gastos h2 {
+    margin-bottom: 20px;
+}
+
+.categoria-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.categoria-item {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1 1 calc(25% - 20px);
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.categoria-item img {
+    width: 50px; 
+    height: 50px; 
+}
+
+.gasto-header, .gasto-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.gasto-header span, .gasto-item span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.gasto-item span {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.add-gasto {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #0080ff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.add-gasto:hover {
+    background-color: #003366;
+}
