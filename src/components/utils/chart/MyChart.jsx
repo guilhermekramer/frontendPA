@@ -36,7 +36,7 @@ const LineChartComponent = () => (
     alignSelf="center"
   >
     <Text fontSize="xl" mb={4} textAlign="center">
-      Gráfico de Linha de Vendas Mensais
+      Categorias com maior gastos
     </Text>
     <LineChart dataKey={"name"}  width={1500} height={550} data={data}> 
       <CartesianGrid strokeDasharray="3 3" />

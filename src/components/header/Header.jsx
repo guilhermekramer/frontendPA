@@ -13,7 +13,7 @@ const Header = () => {
         direction={useBreakpointValue({ base: 'column', md: 'row' })}
       >
         <Heading as="h1" size="lg">
-          Meu Projeto
+         Coin-Cout
         </Heading>
         <Stack
           spacing={4}
@@ -24,10 +24,10 @@ const Header = () => {
             Home
           </Button>
           <Button variant="outline" colorScheme="whiteAlpha">
-            Sobre
+            Categorias
           </Button>
           <Button variant="outline" colorScheme="whiteAlpha">
-            Contato
+            Relatórios
           </Button>
         </Stack>
       </Flex>
