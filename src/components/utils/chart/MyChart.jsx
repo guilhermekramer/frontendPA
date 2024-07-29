@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Box, Text } from '@chakra-ui/react';
+import { getGastos } from '../../../server/api';
 
 // Dados atualizados para incluir duas novas linhas
 const data = [
@@ -18,6 +19,9 @@ const data = [
   { name: 'Dec', value1: 3490, value2: 4300, value3: 3300 },
 ];
 
+const gastos  = getGastos();
+
+
 const LineChartComponent = () => (
   <Box
     p={4}
@@ -34,7 +38,7 @@ const LineChartComponent = () => (
     <Text fontSize="xl" mb={4} textAlign="center">
       Gráfico de Linha de Vendas Mensais
     </Text>
-    <LineChart width={1500} height={550} data={data}> 
+    <LineChart dataKey={"name"}  width={1500} height={550} data={data}> 
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
