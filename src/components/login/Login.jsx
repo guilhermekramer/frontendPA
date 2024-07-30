@@ -3,31 +3,41 @@ import React, { useState, useContext } from 'react';
 import { Box, Heading, Input, InputGroup, InputLeftElement, Button, Stack, Text } from '@chakra-ui/react';
 import { AtSignIcon, LockIcon } from '@chakra-ui/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContexts'; 
 import { loginUser } from '../../server/api'; 
+import { useAuth } from '../../contexts/AuthContexts';
+
 
 
 const Login = () => {
-  const { setAuth } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      console.log("entrou")
-      const { access } = await loginUser({ username, password });
-      setAuth({ token: access });
-      console.log("access", access);
-      console.log("setAuth", setAuth);
+      console.log("entroi")
+      // Chame sua API de login
+      const response = await loginUser({username, password});
+      const { token } = response.data;
+
+      
+      console.log("response",response)
+
+      login(token);
+
+      navigate('/');
+
+      setUsername('');
+      setPassword('');
       setSuccess('Login successful!');
       setError('');
-      navigate('/');
     } catch (err) {
-      setError('Login failed. Please check your username and password.');
+      setError('Invalid username or password');
       setSuccess('');
     }
   };

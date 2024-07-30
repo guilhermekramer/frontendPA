@@ -1,54 +1,38 @@
-// context/AuthContext.jsx
-
-import React, { createContext, useState, useEffect } from 'react';
-import { jwtDecode }from 'jwt-decode';
-import Login from '../components/login/Login';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      return { token, user: jwtDecode(token) };
-    }
-    return { token: null, user: null };
-  });
+    const [token, setToken] = useState(null);
+    const [logado, setLogado] = useState(false);
 
-  const login = async (username, password) => {
-    try {
-      const response = await fetch('http://localhost:8000/token/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-      const token = data.access;
-      localStorage.setItem('token', token);
-      setAuth({ token, user: jwtDecode(token) });
-    } catch (error) {
-      console.error('Login failed', error);
-      throw error;
-    }
-  };
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+            setLogado(true);
+        }
+    }, []);
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    setAuth({ token: null, user: null });
-  };
+    const login = (newToken) => {
+        localStorage.setItem('token', newToken);
+        setToken(newToken);
+        setLogado(true);
+    };
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setAuth({ token, user: jwtDecode(token) });
-    }
-  }, []);
+    const logout = () => {
+        localStorage.removeItem('token');
+        setToken(null);
+        setLogado(false);
+    };
 
-  return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
-      <Login />
-    </AuthContext.Provider>
-  );
+    return (
+        <AuthContext.Provider value={{ token, setToken, logado, setLogado, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
-export { AuthProvider, AuthContext };
+const useAuth = () => useContext(AuthContext);
+
+export { AuthProvider, useAuth };

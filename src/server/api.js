@@ -31,7 +31,7 @@ export const getGastos = async () => {
 export const loginUser = async (credentials) => {
   try {
     const response = await api.post('/token/', credentials);
-    return response.data;
+    return response;
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     throw error;
