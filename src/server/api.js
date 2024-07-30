@@ -28,6 +28,26 @@ export const getGastos = async () => {
     }
 }
 
+export const loginUser = async (credentials) => {
+  try {
+    const response = await api.post('/token/', credentials);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    throw error;
+  }
+};
+
+export const createUser = async (user) =>{
+  try {
+    const response = await api.post('/user/', user);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar usuário:', error);
+    throw error;
+  }
+}
+
 export const getUserById = async (id) => {
   try {
     const response = await api.get(`/user/${id}`);
