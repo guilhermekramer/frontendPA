@@ -23,11 +23,9 @@ const Login = () => {
       console.log("entroi")
       // Chame sua API de login
       const response = await loginUser({username, password});
-      const { token } = response.data;
+      const  token  = response.data['access'];
 
-      
-      console.log("response",response)
-
+      console.log('token', token);
       login(token);
 
       navigate('/');

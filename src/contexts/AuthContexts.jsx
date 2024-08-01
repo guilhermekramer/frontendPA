@@ -5,6 +5,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [logado, setLogado] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -17,17 +18,17 @@ const AuthProvider = ({ children }) => {
     const login = (newToken) => {
         localStorage.setItem('token', newToken);
         setToken(newToken);
-        setLogado(true);
+        setIsAuthenticated(true);
     };
 
     const logout = () => {
         localStorage.removeItem('token');
         setToken(null);
-        setLogado(false);
+        setIsAuthenticated(false);
     };
 
     return (
-        <AuthContext.Provider value={{ token, setToken, logado, setLogado, login, logout }}>
+        <AuthContext.Provider value={{ token, setToken, isAuthenticated, setIsAuthenticated, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

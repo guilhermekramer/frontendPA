@@ -19,7 +19,6 @@ const data = [
   { name: 'Dec', value1: 3490, value2: 4300, value3: 3300 },
 ];
 
-const gastos  = getGastos();
 
 
 const LineChartComponent = () => (

@@ -1,7 +1,12 @@
 import React from 'react';
-import { Box, Flex, Heading, Button, Stack, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex, Link, Heading, Button, Stack, useBreakpointValue } from '@chakra-ui/react';
+import { useAuth } from '../../contexts/AuthContexts';
+import { useLocation } from 'react-router-dom';
+
 
 const Header = () => {
+  const location = useLocation();
+  const {logout} = useAuth();
   return (
     <Box bg="teal.500" color="white" py={3}>
       <Flex
@@ -29,6 +34,14 @@ const Header = () => {
           <Button variant="outline" colorScheme="whiteAlpha">
             Relatórios
           </Button>
+
+          {location.pathname !== "/login"  && (
+            <Button variant="outline" colorScheme="whiteAlpha" onClick={logout}>
+              Logout
+            </Button>
+          )}
+          
+        
         </Stack>
       </Flex>
     </Box>
