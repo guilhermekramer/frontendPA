@@ -27,7 +27,7 @@ const AdicionarGastos = () => {
     <InputGroup mb="6">
       <InputLeftElement pointerEvents="none">
       </InputLeftElement>
-      <Input type="text" placeholder="Categoria" />
+      <Input type="text" placeholder="Descrição" />
     </InputGroup>
     
 
