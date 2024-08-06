@@ -4,14 +4,13 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
-    const [logado, setLogado] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
         if (storedToken) {
             setToken(storedToken);
-            setLogado(true);
+            setIsAuthenticated(true);
         }
     }, []);
 
@@ -22,13 +21,22 @@ const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
-        setToken(null);
-        setIsAuthenticated(false);
+        try {
+            localStorage.removeItem('token');
+            setToken(null);
+            setIsAuthenticated(false);
+        } catch (error) {
+            console.error('Error occurred while logging out:', error);
+        }
+    };
+
+    const checkAuth = () => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token); // Atualizar estado com base na presença do token
     };
 
     return (
-        <AuthContext.Provider value={{ token, setToken, isAuthenticated, setIsAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ token, setToken, isAuthenticated, setIsAuthenticated, login, logout, checkAuth }}>
             {children}
         </AuthContext.Provider>
     );

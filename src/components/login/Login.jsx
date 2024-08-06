@@ -20,12 +20,9 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      console.log("entroi")
-      // Chame sua API de login
       const response = await loginUser({username, password});
       const  token  = response.data['access'];
 
-      console.log('token', token);
       login(token);
 
       navigate('/');
@@ -34,6 +31,7 @@ const Login = () => {
       setPassword('');
       setSuccess('Login successful!');
       setError('');
+      
     } catch (err) {
       setError('Invalid username or password');
       setSuccess('');
