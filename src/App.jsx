@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContexts'; 
 import { useEffect } from 'react';
 import AdicionarGastos from './components/addGastos/AddGastos';
+import AddCategoria from './components/CardCategoria/addCategoria';
 
 function App() {
 
@@ -18,7 +19,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
-        <Route path="/addgasto" element={ <AdicionarGastos /> } />
+        <Route path="/addGastos" element={<AdicionarGastos />} />
+        <Route path="/addCategorias" element={<AddCategoria/>} />
+
+
       </Routes>
     </>
   );
