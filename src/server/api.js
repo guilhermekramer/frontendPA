@@ -69,5 +69,34 @@ export const getUserById = async (id) => {
   }
 };
 
+export const createGasto = async (gasto) => {
+  try {
+    const response = await api.post(`/gasto/`, gasto);
+
+    if(response.status === 200){
+      console.log('Gasto criado com sucesso')
+      return response.data
+
+    }
+    return response.data;
+    
+  } catch (error) {
+    console.error('Erro ao criar gasto:', error);
+    throw error;
+  }
+};
+
+export const getCategories = async () => {
+
+  try{
+    const response = await api.get('/category/');
+    return response.data;
+  }catch(error){
+    console.error('Erro ao obter categorias:', error);
+    throw error;
+  }
+  
+}
+
 
 export default api;

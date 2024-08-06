@@ -23,8 +23,8 @@ const Login = () => {
       const response = await loginUser({username, password});
       const  token  = response.data['access'];
 
+      
       login(token);
-
       navigate('/');
 
       setUsername('');

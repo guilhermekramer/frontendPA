@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Flex, Link, Heading, Button, Stack, useBreakpointValue } from '@chakra-ui/react';
 import { useAuth } from '../../contexts/AuthContexts';
-import { useLocation } from 'react-router-dom';
+import { useHref, useLocation } from 'react-router-dom';
 
 
 const Header = () => {
@@ -32,7 +32,7 @@ const Header = () => {
             Categorias
           </Button>
           <Button variant="outline" colorScheme="whiteAlpha">
-            Relatórios
+            Adicionar Gasto 
           </Button>
 
           {location.pathname !== "/login"  && (

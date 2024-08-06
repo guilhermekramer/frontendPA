@@ -5,23 +5,11 @@ import Signup from './components/signup/Signup';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContexts'; 
 import { useEffect } from 'react';
+import AdicionarGastos from './components/addGastos/AddGastos';
 
 function App() {
-  const { isAuthenticated, checkAuth } = useAuth();
-  const navigate = useNavigate();
 
-
-  useEffect(() => {
-    checkAuth(); 
-
-    if (!isAuthenticated && location.pathname !== '/login' && location.pathname !== '/signup') {
-      navigate('/login');
-    }
-
-    if (isAuthenticated && (location.pathname === '/login' || location.pathname === '/signup')) {
-      navigate('/');
-    }
-  }, [isAuthenticated, navigate, location.pathname, checkAuth]); 
+ 
 
   return (
     <>
@@ -30,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
+        <Route path="/addgasto" element={ <AdicionarGastos /> } />
       </Routes>
     </>
   );

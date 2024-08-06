@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { getUserById } from '../server/api';
 
 const AuthContext = createContext();
 
@@ -18,6 +19,8 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('token', newToken);
         setToken(newToken);
         setIsAuthenticated(true);
+        
+        
     };
 
     const logout = () => {
@@ -32,7 +35,11 @@ const AuthProvider = ({ children }) => {
 
     const checkAuth = () => {
         const token = localStorage.getItem('token');
-        setIsAuthenticated(!!token); // Atualizar estado com base na presença do token
+        if(token){
+        setIsAuthenticated(true); 
+        }else{
+        setIsAuthenticated(false)
+        }
     };
 
     return (
